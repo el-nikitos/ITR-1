@@ -28,13 +28,13 @@ $EndComp
 $Comp
 L elements_2020:Светодиод_сдвоенный_KPB-3025SURKCGKC HL1
 U 1 1 613366EC
-P 10100 8200
-F 0 "HL1" V 10050 8350 60  0000 C CNN
-F 1 "Светодиод_сдвоенный_KPB-3025SURKCGKC" H 10250 8439 60  0001 C CNN
-F 2 "N_VD_HL:Светодиод_SMD_m3025" H 10400 7700 60  0001 C CNN
-F 3 "" H 10400 7700 60  0001 C CNN
-	1    10100 8200
-	0    1    1    0   
+P 8000 9000
+F 0 "HL1" H 8150 9200 60  0000 C CNN
+F 1 "Светодиод_сдвоенный_KPB-3025SURKCGKC" H 8150 9239 60  0001 C CNN
+F 2 "N_VD_HL:Светодиод_SMD_m3025" H 8300 8500 60  0001 C CNN
+F 3 "" H 8300 8500 60  0001 C CNN
+	1    8000 9000
+	1    0    0    -1  
 $EndComp
 $Comp
 L elements:стабилизатор_нерегулируемый_LM1117S33-SOT223 G1
@@ -2684,182 +2684,29 @@ Wire Wire Line
 NoConn ~ 3600 10500
 NoConn ~ 4650 10500
 NoConn ~ 4800 10500
-Text Label 9900 7950 0    50   ~ 0
-3V3
-$Comp
-L elements:Транзистор_полевой_N-IRLML6344TR VT3
-U 1 1 61425488
-P 8150 9000
-F 0 "VT3" H 8550 9450 60  0000 C CNN
-F 1 "Транзистор_полевой_N-IRLML6344TR" H 7800 8825 60  0001 C CNN
-F 2 "N_VD_HL:Транзистор_IRLML6344TR_SOT-23" H 8150 9000 60  0001 C CNN
-F 3 "" H 8150 9000 60  0001 C CNN
-	1    8150 9000
-	1    0    0    -1  
-$EndComp
-$Comp
-L elements:Резистор_0,065Вт R14
-U 1 1 61427639
-P 8200 9375
-F 0 "R14" H 8200 9250 60  0000 C CNN
-F 1 "Резистор_0,065Вт" H 8200 9225 60  0001 C CNN
-F 2 "N_RLC:Резистор_SMD_0603_0,065_Вт" H 8200 9375 60  0001 C CNN
-F 3 "" H 8200 9375 60  0001 C CNN
-F 4 "R101" H 8200 9375 50  0001 C CNN "УГО"
-F 5 "10 кОм" H 8200 9525 50  0000 C CNN "INFO"
-	1    8200 9375
-	-1   0    0    1   
-$EndComp
-$Comp
-L elements:Резистор_0,065Вт R4
-U 1 1 614283F6
-P 7350 9000
-F 0 "R4" H 7350 8875 60  0000 C CNN
-F 1 "Резистор_0,065Вт" H 7350 8850 60  0001 C CNN
-F 2 "N_RLC:Резистор_SMD_0603_0,065_Вт" H 7350 9000 60  0001 C CNN
-F 3 "" H 7350 9000 60  0001 C CNN
-F 4 "R101" H 7350 9000 50  0001 C CNN "УГО"
-F 5 "240 Ом" H 7350 9150 50  0000 C CNN "INFO"
-	1    7350 9000
-	-1   0    0    1   
-$EndComp
-Wire Wire Line
-	7650 9000 7775 9000
-Wire Wire Line
-	7775 9000 7775 9375
-Wire Wire Line
-	7775 9375 7900 9375
-Connection ~ 7775 9000
-Wire Wire Line
-	7775 9000 7900 9000
-Wire Wire Line
-	8500 9375 8900 9375
-Wire Wire Line
-	8700 9000 8900 9000
-Wire Wire Line
-	8900 9000 8900 9375
-Connection ~ 8900 9375
-Wire Wire Line
-	8900 9375 9150 9375
-Text Label 9150 9375 2    50   ~ 0
+Text Label 8750 9200 2    50   ~ 0
 GND
-$Comp
-L elements:Транзистор_полевой_N-IRLML6344TR VT5
-U 1 1 6143C733
-P 8150 10125
-F 0 "VT5" H 8550 10575 60  0000 C CNN
-F 1 "Транзистор_полевой_N-IRLML6344TR" H 7800 9950 60  0001 C CNN
-F 2 "N_VD_HL:Транзистор_IRLML6344TR_SOT-23" H 8150 10125 60  0001 C CNN
-F 3 "" H 8150 10125 60  0001 C CNN
-	1    8150 10125
-	1    0    0    -1  
-$EndComp
-$Comp
-L elements:Резистор_0,065Вт R15
-U 1 1 6143C73F
-P 8200 10500
-F 0 "R15" H 8200 10375 60  0000 C CNN
-F 1 "Резистор_0,065Вт" H 8200 10350 60  0001 C CNN
-F 2 "N_RLC:Резистор_SMD_0603_0,065_Вт" H 8200 10500 60  0001 C CNN
-F 3 "" H 8200 10500 60  0001 C CNN
-F 4 "R101" H 8200 10500 50  0001 C CNN "УГО"
-F 5 "10 кОм" H 8200 10650 50  0000 C CNN "INFO"
-	1    8200 10500
-	-1   0    0    1   
-$EndComp
-$Comp
-L elements:Резистор_0,065Вт R13
-U 1 1 6143C74B
-P 7350 10125
-F 0 "R13" H 7350 10000 60  0000 C CNN
-F 1 "Резистор_0,065Вт" H 7350 9975 60  0001 C CNN
-F 2 "N_RLC:Резистор_SMD_0603_0,065_Вт" H 7350 10125 60  0001 C CNN
-F 3 "" H 7350 10125 60  0001 C CNN
-F 4 "R101" H 7350 10125 50  0001 C CNN "УГО"
-F 5 "240 Ом" H 7350 10275 50  0000 C CNN "INFO"
-	1    7350 10125
-	-1   0    0    1   
-$EndComp
-Wire Wire Line
-	7650 10125 7775 10125
-Wire Wire Line
-	7775 10125 7775 10500
-Wire Wire Line
-	7775 10500 7900 10500
-Connection ~ 7775 10125
-Wire Wire Line
-	7775 10125 7900 10125
-Wire Wire Line
-	8500 10500 8900 10500
-Wire Wire Line
-	8700 10125 8900 10125
-Wire Wire Line
-	8900 10125 8900 10500
-Connection ~ 8900 10500
-Wire Wire Line
-	8900 10500 9150 10500
-Text Label 9150 10500 2    50   ~ 0
-GND
-Wire Wire Line
-	8700 8700 9150 8700
-Wire Wire Line
-	9900 8700 9900 8500
-Wire Wire Line
-	8700 9825 9150 9825
-Wire Wire Line
-	10100 9825 10100 8500
 $Comp
 L elements:Резистор_0,065Вт R16
 U 1 1 614557AC
-P 9450 8700
-F 0 "R16" H 9450 8575 60  0000 C CNN
-F 1 "Резистор_0,065Вт" H 9450 8550 60  0001 C CNN
-F 2 "N_RLC:Резистор_SMD_0603_0,065_Вт" H 9450 8700 60  0001 C CNN
-F 3 "" H 9450 8700 60  0001 C CNN
-F 4 "R101" H 9450 8700 50  0001 C CNN "УГО"
-F 5 "240 Ом" H 9450 8850 50  0000 C CNN "INFO"
-	1    9450 8700
+P 7425 9000
+F 0 "R16" H 7425 8875 60  0000 C CNN
+F 1 "Резистор_0,065Вт" H 7425 8850 60  0001 C CNN
+F 2 "N_RLC:Резистор_SMD_0603_0,065_Вт" H 7425 9000 60  0001 C CNN
+F 3 "" H 7425 9000 60  0001 C CNN
+F 4 "R101" H 7425 9000 50  0001 C CNN "УГО"
+F 5 "240 Ом" H 7425 9150 50  0000 C CNN "INFO"
+	1    7425 9000
 	-1   0    0    1   
 $EndComp
-Wire Wire Line
-	9900 8200 9900 7950
-Wire Wire Line
-	10100 7950 10100 8200
-Wire Wire Line
-	9900 7950 10100 7950
-$Comp
-L elements:Резистор_0,065Вт R17
-U 1 1 61468C4F
-P 9450 9825
-F 0 "R17" H 9450 9700 60  0000 C CNN
-F 1 "Резистор_0,065Вт" H 9450 9675 60  0001 C CNN
-F 2 "N_RLC:Резистор_SMD_0603_0,065_Вт" H 9450 9825 60  0001 C CNN
-F 3 "" H 9450 9825 60  0001 C CNN
-F 4 "R101" H 9450 9825 50  0001 C CNN "УГО"
-F 5 "240 Ом" H 9450 9975 50  0000 C CNN "INFO"
-	1    9450 9825
-	-1   0    0    1   
-$EndComp
-Wire Wire Line
-	9750 9825 10100 9825
-Wire Wire Line
-	9900 8700 9750 8700
 Wire Wire Line
 	5950 9300 6900 9300
 Wire Wire Line
 	6900 9300 6900 9000
-Wire Wire Line
-	6900 9000 7050 9000
-Wire Wire Line
-	5950 9600 6900 9600
-Wire Wire Line
-	6900 9600 6900 10125
-Wire Wire Line
-	6900 10125 7050 10125
 NoConn ~ 5950 9450
-Text Label 6750 9300 2    50   ~ 0
+Text Label 6750 9600 2    50   ~ 0
 LED.GREEN
-Text Label 6775 9600 2    50   ~ 0
+Text Label 6750 9300 2    50   ~ 0
 LED.RED
 $Comp
 L elements:Клеммник_х3 XS2
@@ -2903,19 +2750,6 @@ F 3 "" H 7675 6800 50  0001 C CNN
 	0    -1   -1   0   
 $EndComp
 $Comp
-L elements_2020:Стабилитрон_1N5352BRLG_вертикальный VD2
-U 1 1 614DCB6C
-P 3500 7300
-F 0 "VD2" V 3700 7125 39  0000 C CNN
-F 1 "Стабилитрон_BZV55C2V7" H 3675 7075 39  0001 C CNN
-F 2 "N_VD_HL:SOD-80" H 3650 6975 39  0001 C CNN
-F 3 "" H 3400 7300 39  0001 C CNN
-F 4 "2,7 В" V 3625 7125 39  0000 C CNN "INFO"
-F 5 "https://www.chipdip.ru/product/bzv55c2v7" H 3650 6875 50  0001 C CNN "LINK"
-	1    3500 7300
-	0    -1   -1   0   
-$EndComp
-$Comp
 L elements_2020:Стабилитрон_1N5352BRLG_вертикальный VD5
 U 1 1 614DE25E
 P 15250 2300
@@ -2926,19 +2760,6 @@ F 3 "" H 15150 2300 39  0001 C CNN
 F 4 "3,9 В" V 15362 2191 39  0000 R CNN "INFO"
 F 5 "https://www.chipdip.ru/product/bzv55-c3v9.115" H 15400 1875 50  0001 C CNN "LINK"
 	1    15250 2300
-	0    -1   -1   0   
-$EndComp
-$Comp
-L elements_2020:Стабилитрон_1N5352BRLG_вертикальный VD3
-U 1 1 614EA3B9
-P 3875 7300
-F 0 "VD3" V 4075 7125 39  0000 C CNN
-F 1 "Стабилитрон_BZV55C2V7" H 4050 7075 39  0001 C CNN
-F 2 "N_VD_HL:SOD-80" H 4025 6975 39  0001 C CNN
-F 3 "" H 3775 7300 39  0001 C CNN
-F 4 "2,7 В" V 4000 7125 39  0000 C CNN "INFO"
-F 5 "https://www.chipdip.ru/product/bzv55c2v7" H 4025 6875 50  0001 C CNN "LINK"
-	1    3875 7300
 	0    -1   -1   0   
 $EndComp
 $Comp
@@ -2978,13 +2799,7 @@ F 5 "100 Ом" H 3050 6650 50  0000 C CNN "INFO"
 $EndComp
 Wire Wire Line
 	2500 6125 2750 6125
-Wire Wire Line
-	3500 7300 3500 7500
-Wire Wire Line
-	3500 7500 3875 7500
-Wire Wire Line
-	3875 7500 3875 7300
-Text Label 3750 7500 2    50   ~ 0
+Text Label 4000 7500 0    50   ~ 0
 GND
 $Comp
 L elements:Резистор_0,065Вт R22
@@ -2999,30 +2814,15 @@ F 5 "100 Ом" H 4675 6275 50  0000 C CNN "INFO"
 	1    4675 6125
 	-1   0    0    1   
 $EndComp
-$Comp
-L elements:Резистор_0,065Вт R23
-U 1 1 61539EB2
-P 4675 6500
-F 0 "R23" H 4675 6375 60  0000 C CNN
-F 1 "Резистор_0,065Вт" H 4675 6350 60  0001 C CNN
-F 2 "N_RLC:Резистор_SMD_0603_0,065_Вт" H 4675 6500 60  0001 C CNN
-F 3 "" H 4675 6500 60  0001 C CNN
-F 4 "R101" H 4675 6500 50  0001 C CNN "УГО"
-F 5 "100 Ом" H 4675 6650 50  0000 C CNN "INFO"
-	1    4675 6500
-	-1   0    0    1   
-$EndComp
 Text Label 5375 6125 2    50   ~ 0
 UART.RX
-Text Label 5375 6500 2    50   ~ 0
+Text Label 3875 6500 2    50   ~ 0
 UART.TX
-Wire Wire Line
-	4975 6500 5375 6500
 Wire Wire Line
 	4975 6125 5375 6125
 Text Notes 1875 7375 0    50   ~ 0
 ПОДКЛЮЧЕНИЕ ПРОГРАММИРОВАНИЯ
-Text Label 5375 6875 2    50   ~ 0
+Text Label 3875 6875 2    50   ~ 0
 BOOT
 $Comp
 L elements:Резистор_0,065Вт R21
@@ -3053,30 +2853,7 @@ $EndComp
 Wire Wire Line
 	4250 7500 4250 7300
 Wire Wire Line
-	4250 7500 3875 7500
-Connection ~ 3875 7500
-$Comp
-L elements:Резистор_0,065Вт R24
-U 1 1 615E49FE
-P 4675 6875
-F 0 "R24" H 4675 6750 60  0000 C CNN
-F 1 "Резистор_0,065Вт" H 4675 6725 60  0001 C CNN
-F 2 "N_RLC:Резистор_SMD_0603_0,065_Вт" H 4675 6875 60  0001 C CNN
-F 3 "" H 4675 6875 60  0001 C CNN
-F 4 "R101" H 4675 6875 50  0001 C CNN "УГО"
-F 5 "100 Ом" H 4675 7025 50  0000 C CNN "INFO"
-	1    4675 6875
-	-1   0    0    1   
-$EndComp
-Wire Wire Line
-	4975 6875 5375 6875
-Wire Wire Line
-	3350 6500 3875 6500
-Wire Wire Line
-	3875 7000 3875 6500
-Connection ~ 3875 6500
-Wire Wire Line
-	3875 6500 4375 6500
+	3500 6875 3875 6875
 Text Label 2250 6875 2    50   ~ 0
 OUT.BOOT
 Wire Wire Line
@@ -3092,8 +2869,6 @@ Wire Wire Line
 Wire Wire Line
 	2500 6575 2500 6125
 Wire Wire Line
-	3500 7000 3500 6875
-Wire Wire Line
 	4250 6125 4375 6125
 Wire Wire Line
 	3350 6125 4250 6125
@@ -3101,10 +2876,7 @@ Connection ~ 4250 6125
 Wire Wire Line
 	4250 7000 4250 6125
 Wire Wire Line
-	3500 6875 4375 6875
-Wire Wire Line
 	3350 6875 3500 6875
-Connection ~ 3500 6875
 $Comp
 L elements:Резистор_0,065Вт R18
 U 1 1 616465EF
@@ -3262,4 +3034,45 @@ F 3 "" H 5000 1000 60  0001 C CNN
 $EndComp
 Wire Wire Line
 	4750 1000 5000 1000
+Text Label 6000 1750 0    50   ~ 0
+BAT.CHARGE
+Wire Wire Line
+	4000 7500 4250 7500
+Connection ~ 3500 6875
+Wire Wire Line
+	3350 6500 3875 6500
+$Comp
+L elements:Резистор_0,065Вт R17
+U 1 1 61468C4F
+P 7425 9600
+F 0 "R17" H 7425 9475 60  0000 C CNN
+F 1 "Резистор_0,065Вт" H 7425 9450 60  0001 C CNN
+F 2 "N_RLC:Резистор_SMD_0603_0,065_Вт" H 7425 9600 60  0001 C CNN
+F 3 "" H 7425 9600 60  0001 C CNN
+F 4 "R101" H 7425 9600 50  0001 C CNN "УГО"
+F 5 "240 Ом" H 7425 9750 50  0000 C CNN "INFO"
+	1    7425 9600
+	-1   0    0    1   
+$EndComp
+Wire Wire Line
+	5950 9600 7125 9600
+Wire Wire Line
+	6900 9000 7125 9000
+Wire Wire Line
+	7725 9000 8000 9000
+Wire Wire Line
+	7725 9600 7875 9600
+Wire Wire Line
+	7875 9600 7875 9200
+Wire Wire Line
+	7875 9200 8000 9200
+Wire Wire Line
+	8300 9000 8500 9000
+Wire Wire Line
+	8500 9000 8500 9200
+Wire Wire Line
+	8300 9200 8500 9200
+Wire Wire Line
+	8750 9200 8500 9200
+Connection ~ 8500 9200
 $EndSCHEMATC
