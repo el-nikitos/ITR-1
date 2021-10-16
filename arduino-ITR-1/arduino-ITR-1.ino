@@ -30,6 +30,9 @@ float f_aref_2v5 = 2.5,
       f_ain_batt = 0,
       f_batt_koeff = 2;
 
+String s_input_buf = "",
+       s_input = "";
+
 //BluetoothSerial SerialBT;
 //boolean confirmRequestPending = true;
 
@@ -48,6 +51,7 @@ void setup() {
   digitalWrite( SELF_TURN, HIGH );
 
   Serial.println("SELF-PWR TURN ON");
+  Serial.println( "'help' for list of commands" );
   //
   /*
   SerialBT.enableSSP();
@@ -64,10 +68,12 @@ void loop() {
   adc_read();
   
   if ( (millis() - ulong_time_log_millis) > int_time_to_send_log ) {
-      send_logs();
+      //send_logs();
       ulong_time_log_millis = millis();
-      //SerialBT.write( 55 );
   }
+
+  serial_word_read();
+  s_input = serial_comand_exe( s_input );
   
   //led_blink(5, 2000);
   led_work_indication();
@@ -111,7 +117,7 @@ void read_gpios_inputs()  {
   //
 }
 
-void send_logs()  {
+void send_device_status()  {
   Serial.print("TIME(SEC): ");
   Serial.println( (int)( millis()/1000 ) );
 
@@ -132,6 +138,14 @@ void send_logs()  {
 
   Serial.print("U_BATT(V): ");
   Serial.println( f_ain_batt );
+  
+  Serial.println();
+}
+
+
+void send_help()  {
+  Serial.println( "'help' for list of commands" );
+  Serial.println( "'dstatus' for device status" );
   
   Serial.println();
 }
@@ -185,5 +199,58 @@ void led_work_indication()  {
   } else {
     led_blink(5, 2000);
   }
+  //
+}
+
+void serial_word_read() {
+  //
+  if (Serial.available() > 0) {  //если есть доступные данные
+    
+    // считываем байт
+    //int size_buffer = Serial.available();
+    char incomingByte = Serial.read();
+
+    if (incomingByte != 10) {
+      s_input_buf = s_input_buf + incomingByte;
+    } else {
+      //Serial.println( s_input_buf );
+      s_input = s_input_buf;
+      s_input_buf = "";
+    }
+  }
+  //
+}
+
+String serial_comand_exe( String s_command )  {
+  //
+  boolean b_fail_command = true;
+  
+  if (s_command != "") {
+    Serial.print(">>");
+    Serial.println( s_command );
+    
+    if (s_command == "dstatus") {
+      send_device_status();
+      b_fail_command = false;
+      //s_input = "";
+    }
+
+    if (s_command == "help") {
+      send_help();
+      b_fail_command = false;
+      //s_input = "";
+    }
+
+    if ( b_fail_command == true )  {
+      Serial.print( "COMMAND '" );
+      Serial.print( s_command );
+      Serial.println( "' NOT FOUND" );
+      Serial.println();
+      b_fail_command = false;
+      //s_input = "";
+    }
+  }
+
+  return "";
   //
 }
