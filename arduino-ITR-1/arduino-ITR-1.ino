@@ -27,7 +27,8 @@ float f_aref_2v5 = 2.5,
       f_ain_batt = 0,
       f_batt_koeff = 2;
 
-BluetoothSerial SerialBT;
+//BluetoothSerial SerialBT;
+//boolean confirmRequestPending = true;
 
 void setup() {
   //
@@ -44,7 +45,13 @@ void setup() {
 
   Serial.println("SELF-PWR TURN ON");
   //
+  /*
+  SerialBT.enableSSP();
+  SerialBT.onConfirmRequest(BTConfirmRequestCallback);
+  SerialBT.onAuthComplete(BTAuthCompleteCallback);
   SerialBT.begin("EL-Nikitos BT test"); //Bluetooth device name
+  Serial.println("The BT device started, now you can pair it with bluetooth!");
+  */
 }
 
 void loop() {
@@ -55,8 +62,10 @@ void loop() {
   if ( (millis() - ulong_time_log_millis) > int_time_to_send_log ) {
       send_logs();
       ulong_time_log_millis = millis();
-      SerialBT.write( 55 );
+      //SerialBT.write( 55 );
   }
+  
+  led_blink(5, 2000);
   //
 }
 
@@ -91,6 +100,9 @@ void read_gpios_inputs()  {
 }
 
 void send_logs()  {
+  Serial.print("TIME(SEC): ");
+  Serial.println( round(millis()/1000) );
+  
   Serial.print("BTN: ");
   Serial.println( b_BTN );
 
@@ -129,4 +141,16 @@ void init_blink(int num) {
 
   delay(500);
   //
+}
+
+void led_blink(float f_fill, int int_period)  {
+  
+  int relay_time_now = (millis()) % int_period;
+  int step_time = float(int_period)*f_fill/100;
+
+  if (relay_time_now < step_time) {
+    digitalWrite( LED, HIGH );
+  } else {
+    digitalWrite( LED, LOW );
+  }
 }
