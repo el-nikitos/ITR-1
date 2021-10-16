@@ -11,11 +11,14 @@
 #define REF_2V5     27
 #define BATT        4
 
-unsigned long   ulong_time_millis = 0,
-                ulong_time_log_millis = 0;
+unsigned long   //ulong_time_millis = 0,
+                ulong_time_log_millis = 0,
+                ulong_time_turn_off_millis = 0;
 
 int int_time_to_send_log = 2000,
-    int_time_to_turn_on = 5000;
+    int_time_to_turn_on = 5000,
+    int_time_for_turn_off = 120000,
+    int_time_to_turn_off = 0;
 
 boolean b_CHARGE = false,
         b_BTN = false;
@@ -41,6 +44,7 @@ void setup() {
 
   init_blink( 4 );
 
+  ulong_time_turn_off_millis = millis();
   digitalWrite( SELF_TURN, HIGH );
 
   Serial.println("SELF-PWR TURN ON");
@@ -65,7 +69,11 @@ void loop() {
       //SerialBT.write( 55 );
   }
   
-  led_blink(5, 2000);
+  //led_blink(5, 2000);
+  led_work_indication();
+  
+  //
+  condition_for_turn_off();
   //
 }
 
@@ -96,12 +104,19 @@ void read_gpios_inputs()  {
   } else {
     b_BTN = true;
   }
+
+  if (b_BTN == true)  {
+    ulong_time_turn_off_millis = millis();
+  }
   //
 }
 
 void send_logs()  {
   Serial.print("TIME(SEC): ");
-  Serial.println( round(millis()/1000) );
+  Serial.println( (int)( millis()/1000 ) );
+
+  Serial.print("TIME_TO_OFF(SEC): ");
+  Serial.println( int_time_to_turn_off );
   
   Serial.print("BTN: ");
   Serial.println( b_BTN );
@@ -153,4 +168,22 @@ void led_blink(float f_fill, int int_period)  {
   } else {
     digitalWrite( LED, LOW );
   }
+}
+
+void condition_for_turn_off() {
+  int_time_to_turn_off = (int)(int_time_for_turn_off/1000) - (int)( (millis() - ulong_time_turn_off_millis)/1000 );
+
+  if (int_time_to_turn_off <= 0)  {
+    digitalWrite( SELF_TURN, LOW );
+  }
+}
+
+void led_work_indication()  {
+  //
+  if (int_time_to_turn_off <= 10)  {
+    led_blink(10, 500);
+  } else {
+    led_blink(5, 2000);
+  }
+  //
 }
