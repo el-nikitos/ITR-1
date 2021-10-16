@@ -1,7 +1,15 @@
+#include "BluetoothSerial.h"
+
+#if !defined(CONFIG_BT_ENABLED) || !defined(CONFIG_BLUEDROID_ENABLED)
+#error Bluetooth is not enabled! Please run `make menuconfig` to and enable it
+#endif
+
 #define CHRG_STAT   19       
 #define BTN         17 
 #define SELF_TURN   5
 #define LED         18
+#define REF_2V5     27
+#define BATT        4
 
 unsigned long   ulong_time_millis = 0,
                 ulong_time_log_millis = 0;
@@ -12,6 +20,15 @@ int int_time_to_send_log = 2000,
 boolean b_CHARGE = false,
         b_BTN = false;
 
+float f_aref_2v5 = 2.5,
+      f_analog_koef = 1.0,
+      f_aref_bird = 0,
+      f_self_pwr = 0,
+      f_ain_batt = 0,
+      f_batt_koeff = 2;
+
+BluetoothSerial SerialBT;
+
 void setup() {
   //
   init_gpio_pins();
@@ -21,21 +38,24 @@ void setup() {
   Serial.begin(115200);
   Serial.println("ITR-1, Start!");
 
-  delay( int_time_to_turn_on );
+  init_blink( 4 );
 
   digitalWrite( SELF_TURN, HIGH );
 
   Serial.println("SELF-PWR TURN ON");
   //
+  SerialBT.begin("EL-Nikitos BT test"); //Bluetooth device name
 }
 
 void loop() {
   //
   read_gpios_inputs();
+  adc_read();
   
   if ( (millis() - ulong_time_log_millis) > int_time_to_send_log ) {
       send_logs();
       ulong_time_log_millis = millis();
+      SerialBT.write( 55 );
   }
   //
 }
@@ -76,6 +96,37 @@ void send_logs()  {
 
   Serial.print("CHARGE_STATUS: ");
   Serial.println( b_CHARGE );
+
+  Serial.print("SELF_PWR (V): ");
+  Serial.println( f_self_pwr );
+
+  Serial.print("Uref (bird): ");
+  Serial.println( f_aref_bird );
+
+  Serial.print("U_BATT(V): ");
+  Serial.println( f_ain_batt );
   
   Serial.println();
+}
+
+void adc_read() {
+  f_aref_bird = analogRead( REF_2V5 );
+  f_analog_koef = f_aref_2v5 / f_aref_bird;
+
+  f_self_pwr = 4096 * f_aref_2v5 / f_aref_bird;
+  
+  f_ain_batt = f_batt_koeff * f_analog_koef * analogRead( BATT );
+}
+
+void init_blink(int num) {
+  //
+  for (int i=0; i<num; i++) {
+    digitalWrite( LED, HIGH );
+    delay(500);
+    digitalWrite( LED, LOW );
+    delay(500);
+  }
+
+  delay(500);
+  //
 }

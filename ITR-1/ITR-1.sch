@@ -3064,12 +3064,8 @@ Wire Wire Line
 	11250 3500 11925 3500
 Text Label 6750 10300 2    50   ~ 0
 AN.BAT.MEASURE
-Text Label 5625 11000 2    50   ~ 0
+Text Label 2000 10150 0    50   ~ 0
 AN.2V5.REF
-Wire Wire Line
-	4800 10750 4800 11000
-Wire Wire Line
-	4800 11000 5625 11000
 NoConn ~ 4650 10750
 NoConn ~ 2500 10300
 Wire Wire Line
@@ -3122,4 +3118,26 @@ F 3 "" H 10500 7500 50  0001 C CNN
 	1    10500 7500
 	1    0    0    -1  
 $EndComp
+Wire Wire Line
+	2500 10150 2000 10150
+NoConn ~ 4800 10750
+$Comp
+L elements_2020:Кнопка_KLS7-TS5401-1.35-250-T K2
+U 1 1 61673D90
+P 9050 7150
+F 0 "K2" V 9250 7350 50  0000 R CNN
+F 1 "Кнопка_KLS7-TS5401-1.35-250-T" V 9004 7100 50  0001 R CNN
+F 2 "N_X:Кнопка_KLS7-TS5401" H 9050 7175 50  0001 C CNN
+F 3 "" H 9050 7175 50  0001 C CNN
+	1    9050 7150
+	0    -1   -1   0   
+$EndComp
+Text Label 8750 6750 2    50   ~ 0
+BOOT
+Text Label 9050 6750 0    50   ~ 0
+GND
+Wire Wire Line
+	9050 6750 9050 7000
+Wire Wire Line
+	8750 6750 8750 7000
 $EndSCHEMATC
