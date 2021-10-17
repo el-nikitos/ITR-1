@@ -1,8 +1,10 @@
+/*
 #include "BluetoothSerial.h"
-
 #if !defined(CONFIG_BT_ENABLED) || !defined(CONFIG_BLUEDROID_ENABLED)
 #error Bluetooth is not enabled! Please run `make menuconfig` to and enable it
 #endif
+*/
+#include <WiFi.h>
 
 #define CHRG_STAT   19       
 #define BTN         17 
@@ -21,7 +23,8 @@ int int_time_to_send_log = 2000,
     int_time_to_turn_off = 0;
 
 boolean b_CHARGE = false,
-        b_BTN = false;
+        b_BTN = false,
+        b_CONNECT = false;
 
 float f_aref_2v5 = 2.5,
       f_analog_koef = 1.0,
@@ -31,10 +34,17 @@ float f_aref_2v5 = 2.5,
       f_batt_koeff = 2;
 
 String s_input_buf = "",
-       s_input = "";
+       s_input = "",
+       s_alarm_msg = "";
 
 //BluetoothSerial SerialBT;
 //boolean confirmRequestPending = true;
+const char* ssid     = "TxBrom_point";
+const char* password = "164txbrom";
+
+IPAddress local_IP(192, 168, 1, 51);
+IPAddress gateway(192, 168, 1, 1);
+IPAddress subnet(255, 255, 0, 0);
 
 void setup() {
   //
@@ -52,6 +62,12 @@ void setup() {
 
   Serial.println("SELF-PWR TURN ON");
   Serial.println( "'help' for list of commands" );
+
+  if (!WiFi.config(local_IP, gateway, subnet)) {
+    Serial.println("STA Failed to configure");
+  }
+  
+  WiFi.begin(ssid, password);
   //
   /*
   SerialBT.enableSSP();
@@ -64,11 +80,14 @@ void setup() {
 
 void loop() {
   //
+  s_alarm_msg = "";
+  
   read_gpios_inputs();
   adc_read();
+  check_connect();
   
   if ( (millis() - ulong_time_log_millis) > int_time_to_send_log ) {
-      //send_logs();
+      
       ulong_time_log_millis = millis();
   }
 
@@ -117,46 +136,23 @@ void read_gpios_inputs()  {
   //
 }
 
-void send_device_status()  {
-  Serial.print("TIME(SEC): ");
-  Serial.println( (int)( millis()/1000 ) );
-
-  Serial.print("TIME_TO_OFF(SEC): ");
-  Serial.println( int_time_to_turn_off );
-  
-  Serial.print("BTN: ");
-  Serial.println( b_BTN );
-
-  Serial.print("CHARGE_STATUS: ");
-  Serial.println( b_CHARGE );
-
-  Serial.print("SELF_PWR (V): ");
-  Serial.println( f_self_pwr );
-
-  Serial.print("Uref (bird): ");
-  Serial.println( f_aref_bird );
-
-  Serial.print("U_BATT(V): ");
-  Serial.println( f_ain_batt );
-  
-  Serial.println();
-}
-
-
-void send_help()  {
-  Serial.println( "'help' for list of commands" );
-  Serial.println( "'dstatus' for device status" );
-  
-  Serial.println();
-}
-
 void adc_read() {
   f_aref_bird = analogRead( REF_2V5 );
+
+  if ( f_aref_bird <= 0 ) {
+    s_alarm_msg = s_alarm_msg + "uncorrect AREF level; ";
+    f_aref_bird = 3100;
+  }
+  
   f_analog_koef = f_aref_2v5 / f_aref_bird;
 
   f_self_pwr = 4096 * f_aref_2v5 / f_aref_bird;
   
   f_ain_batt = f_batt_koeff * f_analog_koef * analogRead( BATT );
+
+  if ( f_ain_batt <= 0 ) {
+    s_alarm_msg = s_alarm_msg + "uncorrect BATTERY level; ";
+  }
 }
 
 void init_blink(int num) {
@@ -218,39 +214,5 @@ void serial_word_read() {
       s_input_buf = "";
     }
   }
-  //
-}
-
-String serial_comand_exe( String s_command )  {
-  //
-  boolean b_fail_command = true;
-  
-  if (s_command != "") {
-    Serial.print(">>");
-    Serial.println( s_command );
-    
-    if (s_command == "dstatus") {
-      send_device_status();
-      b_fail_command = false;
-      //s_input = "";
-    }
-
-    if (s_command == "help") {
-      send_help();
-      b_fail_command = false;
-      //s_input = "";
-    }
-
-    if ( b_fail_command == true )  {
-      Serial.print( "COMMAND '" );
-      Serial.print( s_command );
-      Serial.println( "' NOT FOUND" );
-      Serial.println();
-      b_fail_command = false;
-      //s_input = "";
-    }
-  }
-
-  return "";
   //
 }
