@@ -15,11 +15,11 @@
 
 unsigned long   //ulong_time_millis = 0,
                 ulong_time_log_millis = 0,
+                ulong_time_for_turn_off = 300000,
                 ulong_time_turn_off_millis = 0;
 
 int int_time_to_send_log = 2000,
     int_time_to_turn_on = 5000,
-    int_time_for_turn_off = 120000,
     int_time_to_turn_off = 0;
 
 boolean b_CHARGE = false,
@@ -181,7 +181,7 @@ void led_blink(float f_fill, int int_period)  {
 }
 
 void condition_for_turn_off() {
-  int_time_to_turn_off = (int)(int_time_for_turn_off/1000) - (int)( (millis() - ulong_time_turn_off_millis)/1000 );
+  int_time_to_turn_off = (int)(ulong_time_for_turn_off/1000) - (int)( (millis() - ulong_time_turn_off_millis)/1000 );
 
   if (int_time_to_turn_off <= 0)  {
     digitalWrite( SELF_TURN, LOW );
