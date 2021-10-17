@@ -3024,14 +3024,14 @@ F 3 "" H 7675 7050 50  0001 C CNN
 $EndComp
 Wire Wire Line
 	11000 3500 11675 3500
-Text Label 6750 10300 2    50   ~ 0
+Text Label 1750 9400 0    50   ~ 0
 AN.BAT.MEASURE
-Text Label 2000 10150 0    50   ~ 0
+Text Label 1750 9550 0    50   ~ 0
 AN.2V5.REF
 NoConn ~ 4650 10750
 NoConn ~ 2500 10300
 Wire Wire Line
-	6750 10300 5950 10300
+	1750 9400 2500 9400
 Wire Wire Line
 	5950 10000 6750 10000
 $Comp
@@ -3081,7 +3081,7 @@ F 3 "" H 10500 7500 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	2500 10150 2000 10150
+	2500 9550 1750 9550
 NoConn ~ 4800 10750
 $Comp
 L elements_2020:Кнопка_KLS7-TS5401-1.35-250-T K2
