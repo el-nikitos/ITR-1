@@ -10,8 +10,8 @@
 #define BTN         17 
 #define SELF_TURN   5
 #define LED         18
-#define REF_2V5     27
-#define BATT        4
+#define REF_2V5     32
+#define BATT        35
 
 unsigned long   //ulong_time_millis = 0,
                 ulong_time_log_millis = 0,
