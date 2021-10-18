@@ -5,6 +5,7 @@
 #endif
 */
 #include <WiFi.h>
+#include <driver/adc.h>
 
 #define CHRG_STAT   19       
 #define BTN         17 
@@ -48,6 +49,10 @@ IPAddress subnet(255, 255, 0, 0);
 
 void setup() {
   //
+  adc1_config_width( ADC_WIDTH_BIT_12 );
+  adc1_config_channel_atten( ADC1_CHANNEL_4, ADC_ATTEN_DB_11 );
+  adc1_config_channel_atten( ADC1_CHANNEL_7, ADC_ATTEN_DB_11 );
+  
   init_gpio_pins();
   
   ulong_time_log_millis = millis();
@@ -137,7 +142,8 @@ void read_gpios_inputs()  {
 }
 
 void adc_read() {
-  f_aref_bird = analogRead( REF_2V5 );
+  //f_aref_bird = analogRead( REF_2V5 );
+  f_aref_bird = adc1_get_raw( ADC1_CHANNEL_4 );
 
   if ( f_aref_bird <= 0 ) {
     s_alarm_msg = s_alarm_msg + "uncorrect AREF level; ";
@@ -148,7 +154,8 @@ void adc_read() {
 
   f_self_pwr = 4096 * f_aref_2v5 / f_aref_bird;
   
-  f_ain_batt = f_batt_koeff * f_analog_koef * analogRead( BATT );
+  //f_ain_batt = f_batt_koeff * f_analog_koef * analogRead( BATT );
+  f_ain_batt = f_batt_koeff * f_analog_koef * adc1_get_raw( ADC1_CHANNEL_7 );
 
   if ( f_ain_batt <= 0 ) {
     s_alarm_msg = s_alarm_msg + "uncorrect BATTERY level; ";
