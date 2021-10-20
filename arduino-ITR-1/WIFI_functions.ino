@@ -31,14 +31,46 @@ void wifi_wireless_connect() {
     WiFi.begin(ssid, password);
 
     while (WiFi.status() != WL_CONNECTED) {
-      delay(500);
+      digitalWrite( LED, HIGH );
+      delay(100);
+      digitalWrite( LED, LOW );
+      delay(400);
       Serial.print(".");
+      
       byte_counter++;
-      if ( byte_counter >= 10 ) {
+      
+      if ( byte_counter >= 20 ) {
+        WiFi.disconnect();
         break;
       }
     }
   }
+
+  b_CONNECT == true;
   check_connect();
   //
+}
+
+void send_motor_start() {
+  client.connect( host, httpPort );
+  delay(500);
+  client.print("START");
+  client.stop();
+
+  b_command_to_start = false;
+  
+  Serial.println("the START command has been sent");
+  Serial.println();
+}
+
+void send_motor_stop()  {
+  client.connect( host, httpPort );
+  delay(500);
+  client.print("STOP");
+  client.stop();
+
+  b_command_to_start = true;
+  
+  Serial.println("the STOP command has been sent");
+  Serial.println();
 }

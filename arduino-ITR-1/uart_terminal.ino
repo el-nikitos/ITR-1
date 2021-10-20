@@ -35,6 +35,16 @@ String serial_comand_exe( String s_command )  {
       b_fail_command = false;
     }
 
+    if (s_command == "mstart") {
+      send_motor_start();
+      b_fail_command = false;
+    }
+
+    if (s_command == "mstop") {
+      send_motor_stop();
+      b_fail_command = false;
+    }
+
     if ( b_fail_command == true )  {
       Serial.print( "COMMAND '" );
       Serial.print( s_command );
@@ -59,8 +69,14 @@ void send_device_status()  {
   Serial.print("BTN: ");
   Serial.println( b_BTN );
 
+  Serial.print("BTN if free: ");
+  Serial.println( b_BTN_free );
+
   Serial.print("CHARGE_STATUS: ");
   Serial.println( b_CHARGE );
+
+  Serial.print("COMMAND TO START: ");
+  Serial.println( b_command_to_start );
 
   Serial.print("ALARMS: ");
   if (s_alarm_msg == "")  {
@@ -87,6 +103,8 @@ void send_help()  {
   Serial.println( "'wstatus' for wireless connect status" );
   Serial.println( "'disconnect' disconnect from current wireless connection" );
   Serial.println( "'connect' connect to current SSID" );
+  Serial.println( "'mstart' start the motor" );
+  Serial.println( "'mstop' stop the motor" );
   
   Serial.println();
 }

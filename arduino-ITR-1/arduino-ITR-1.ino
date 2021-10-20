@@ -24,8 +24,11 @@ int int_time_to_send_log = 2000,
     int_time_to_turn_off = 0;
 
 boolean b_CHARGE = false,
-        b_BTN = false,
-        b_CONNECT = false;
+        b_BTN = true,
+        b_BTN_free = false,
+        b_CONNECT = false,
+        b_command_to_start = true;
+int int_BTN_counter = 5000;
 
 float f_aref_2v5 = 2.5,
       f_analog_koef = 1.0,
@@ -40,12 +43,20 @@ String s_input_buf = "",
 
 //BluetoothSerial SerialBT;
 //boolean confirmRequestPending = true;
+//String ssid     = "TxBrom_point",
+//       password = "164txbrom";
+
 const char* ssid     = "TxBrom_point";
 const char* password = "164txbrom";
+const char* host = "192.168.1.22";
 
 IPAddress local_IP(192, 168, 1, 51);
 IPAddress gateway(192, 168, 1, 1);
 IPAddress subnet(255, 255, 0, 0);
+
+WiFiClient client;
+const int httpPort = 10002;
+
 
 void setup() {
   //
@@ -60,7 +71,8 @@ void setup() {
   Serial.begin(115200);
   Serial.println("ITR-1, Start!");
 
-  init_blink( 4 );
+  //init_blink( 4 );
+  wifi_wireless_connect();
 
   ulong_time_turn_off_millis = millis();
   digitalWrite( SELF_TURN, HIGH );
@@ -71,8 +83,8 @@ void setup() {
   if (!WiFi.config(local_IP, gateway, subnet)) {
     Serial.println("STA Failed to configure");
   }
-  
-  WiFi.begin(ssid, password);
+
+  //WiFi.begin(ssid, password);
   //
   /*
   SerialBT.enableSSP();
@@ -100,11 +112,27 @@ void loop() {
   s_input = serial_comand_exe( s_input );
   
   //led_blink(5, 2000);
+  //client.connect( host, httpPort );
+  if (b_BTN == false) {
+    b_BTN_free = true;
+  }
+  if ( (b_BTN == true)&(b_BTN_free == true) )  {
+    b_BTN_free = false;
+
+    if (b_command_to_start == true) {
+      send_motor_start();
+    } else  {
+      send_motor_stop();
+    }
+    
+  }
+  
   led_work_indication();
   
   //
   condition_for_turn_off();
   //
+  
 }
 
 void init_gpio_pins()  {
@@ -130,9 +158,18 @@ void read_gpios_inputs()  {
   }
 
   if ( (digitalRead(BTN)) == HIGH )  {
-    b_BTN = false;
+    int_BTN_counter--;
   } else {
+    int_BTN_counter++;
+  }
+
+  if (int_BTN_counter > 5000)  {  int_BTN_counter = 5000;  }
+  if (int_BTN_counter < 0)  {  int_BTN_counter = 0;  }
+  
+  if ( int_BTN_counter >= 4500 )  {
     b_BTN = true;
+  } else {
+    b_BTN = false;
   }
 
   if (b_BTN == true)  {
