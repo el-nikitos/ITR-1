@@ -2577,7 +2577,7 @@ Wire Wire Line
 	5950 8500 6275 8500
 Text Label 6275 8500 2    50   ~ 0
 GND
-Text Label 6750 9550 2    50   ~ 0
+Text Label 6750 9250 2    50   ~ 0
 CHARGE.MODE
 Text Label 6750 10000 2    50   ~ 0
 BUTT.TURN
@@ -2594,14 +2594,14 @@ Wire Wire Line
 Wire Wire Line
 	6625 8950 5950 8950
 Wire Wire Line
-	6750 9550 5950 9550
+	6750 9250 5950 9250
 Text Label 6250 10450 2    50   ~ 0
 BOOT
 Wire Wire Line
 	5950 10450 6250 10450
 NoConn ~ 3600 10750
 Text Label 6750 9700 0    50   ~ 0
-LED
+LED1
 $Comp
 L elements:Клеммник_х3 XS2
 U 1 1 6149F023
@@ -2926,14 +2926,14 @@ Wire Wire Line
 $Comp
 L elements:Резистор_0,065Вт R17
 U 1 1 61468C4F
-P 7275 9700
-F 0 "R17" H 7275 9575 60  0000 C CNN
-F 1 "Резистор_0,065Вт" H 7275 9550 60  0001 C CNN
-F 2 "N_RLC:Резистор_SMD_0603_0,065_Вт" H 7275 9700 60  0001 C CNN
-F 3 "" H 7275 9700 60  0001 C CNN
-F 4 "R101" H 7275 9700 50  0001 C CNN "УГО"
-F 5 "240 Ом" H 7275 9850 50  0000 C CNN "INFO"
-	1    7275 9700
+P 8200 9700
+F 0 "R17" H 8200 9575 60  0000 C CNN
+F 1 "Резистор_0,065Вт" H 8200 9550 60  0001 C CNN
+F 2 "N_RLC:Резистор_SMD_0603_0,065_Вт" H 8200 9700 60  0001 C CNN
+F 3 "" H 8200 9700 60  0001 C CNN
+F 4 "R101" H 8200 9700 50  0001 C CNN "УГО"
+F 5 "240 Ом" H 8200 9850 50  0000 C CNN "INFO"
+	1    8200 9700
 	-1   0    0    1   
 $EndComp
 $Comp
@@ -3034,26 +3034,8 @@ Wire Wire Line
 	1750 9400 2500 9400
 Wire Wire Line
 	5950 10000 6750 10000
-$Comp
-L ITR-1-rescue:Светодиод-BIG_schemes HL1
-U 1 1 61662DE6
-P 7750 9700
-F 0 "HL1" H 7725 10125 138 0000 L CNB
-F 1 "Светодиод" H 7850 9900 50  0001 C CNN
-F 2 "N_VD_HL:Светодиод_SMD_IEC_0603" H 8025 9700 50  0001 C CNN
-F 3 "" H 8025 9700 50  0001 C CNN
-F 4 "2.730" H 7850 10000 50  0001 C CNN "SYMBOL"
-	1    7750 9700
-	1    0    0    -1  
-$EndComp
-Wire Wire Line
-	7575 9700 7750 9700
-Wire Wire Line
-	8450 9700 8750 9700
 Text Label 8750 9700 2    50   ~ 0
 GND
-Wire Wire Line
-	5950 9700 6975 9700
 Wire Wire Line
 	5950 9850 6750 9850
 Text Label 6750 9850 2    50   ~ 0
@@ -3268,14 +3250,35 @@ Wire Wire Line
 Text Label 14500 5600 0    50   ~ 0
 U.FB
 $Comp
-L elements_2020:Светодиод_сдвоенный_KPB-3025SURKCGKC HL?
+L elements_2020:Светодиод_сдвоенный_KPB-3025SURKCGKC HL2
 U 1 1 6172B487
-P 8500 8800
-F 0 "HL?" H 8650 9031 60  0000 C CNN
-F 1 "Светодиод_сдвоенный_KPB-3025SURKCGKC" H 8650 9031 60  0001 C CNN
-F 2 "N_VD_HL:Светодиод_SMD_m3025" H 8800 8300 60  0001 C CNN
-F 3 "" H 8800 8300 60  0001 C CNN
-	1    8500 8800
+P 7200 9500
+F 0 "HL2" H 7350 9731 60  0000 C CNN
+F 1 "Светодиод_сдвоенный_KPB-3025SURKCGKC" H 7350 9731 60  0001 C CNN
+F 2 "N_VD_HL:Светодиод_SMD_m3025" H 7500 9000 60  0001 C CNN
+F 3 "" H 7500 9000 60  0001 C CNN
+	1    7200 9500
 	1    0    0    -1  
 $EndComp
+Text Label 6750 9550 0    50   ~ 0
+LED2
+Wire Wire Line
+	5950 9700 7200 9700
+Wire Wire Line
+	5950 9550 7000 9550
+Wire Wire Line
+	7000 9550 7000 9500
+Wire Wire Line
+	7000 9500 7200 9500
+Wire Wire Line
+	7500 9700 7750 9700
+Wire Wire Line
+	7750 9500 7750 9700
+Wire Wire Line
+	7750 9500 7500 9500
+Wire Wire Line
+	7900 9700 7750 9700
+Connection ~ 7750 9700
+Wire Wire Line
+	8750 9700 8500 9700
 $EndSCHEMATC

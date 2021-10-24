@@ -53,8 +53,9 @@ void wifi_wireless_connect() {
 
 void send_motor_start() {
   client.connect( host, httpPort );
-  delay(500);
+  delay(250);
   client.print("START");
+  delay(500);
   client.stop();
 
   b_command_to_start = false;
@@ -65,12 +66,21 @@ void send_motor_start() {
 
 void send_motor_stop()  {
   client.connect( host, httpPort );
-  delay(500);
+  delay(250);
   client.print("STOP");
+  delay(500);
   client.stop();
 
   b_command_to_start = true;
   
   Serial.println("the STOP command has been sent");
   Serial.println();
+}
+
+void send_motor_ping()  {
+  client.connect( host, httpPort );
+  delay(250);
+  client.print("PING");
+  delay(500);
+  client.stop();
 }
