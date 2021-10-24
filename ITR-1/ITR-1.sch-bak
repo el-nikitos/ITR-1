@@ -3024,14 +3024,14 @@ F 3 "" H 7675 7050 50  0001 C CNN
 $EndComp
 Wire Wire Line
 	11000 3500 11675 3500
-Text Label 1750 9550 0    50   ~ 0
-AN.BAT.MEASURE
 Text Label 1750 9400 0    50   ~ 0
+AN.BAT.MEASURE
+Text Label 1750 9550 0    50   ~ 0
 AN.2V5.REF
 NoConn ~ 4650 10750
 NoConn ~ 2500 10300
 Wire Wire Line
-	1750 9550 2500 9550
+	1750 9400 2500 9400
 Wire Wire Line
 	5950 10000 6750 10000
 $Comp
@@ -3081,7 +3081,7 @@ F 3 "" H 10500 7500 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	2500 9400 1750 9400
+	2500 9550 1750 9550
 NoConn ~ 4800 10750
 $Comp
 L elements_2020:Кнопка_KLS7-TS5401-1.35-250-T K2
@@ -3265,4 +3265,17 @@ Text Label 14000 4750 0    50   ~ 0
 3V3
 Wire Wire Line
 	13000 1750 13000 4750
+Text Label 14500 5600 0    50   ~ 0
+U.FB
+$Comp
+L elements_2020:Светодиод_сдвоенный_KPB-3025SURKCGKC HL?
+U 1 1 6172B487
+P 8500 8800
+F 0 "HL?" H 8650 9031 60  0000 C CNN
+F 1 "Светодиод_сдвоенный_KPB-3025SURKCGKC" H 8650 9031 60  0001 C CNN
+F 2 "N_VD_HL:Светодиод_SMD_m3025" H 8800 8300 60  0001 C CNN
+F 3 "" H 8800 8300 60  0001 C CNN
+	1    8500 8800
+	1    0    0    -1  
+$EndComp
 $EndSCHEMATC

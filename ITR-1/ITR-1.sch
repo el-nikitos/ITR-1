@@ -3265,4 +3265,17 @@ Text Label 14000 4750 0    50   ~ 0
 3V3
 Wire Wire Line
 	13000 1750 13000 4750
+Text Label 14500 5600 0    50   ~ 0
+U.FB
+$Comp
+L elements_2020:Светодиод_сдвоенный_KPB-3025SURKCGKC HL2
+U 1 1 6172B487
+P 8500 8800
+F 0 "HL2" H 8650 9031 60  0000 C CNN
+F 1 "Светодиод_сдвоенный_KPB-3025SURKCGKC" H 8650 9031 60  0001 C CNN
+F 2 "N_VD_HL:Светодиод_SMD_m3025" H 8800 8300 60  0001 C CNN
+F 3 "" H 8800 8300 60  0001 C CNN
+	1    8500 8800
+	1    0    0    -1  
+$EndComp
 $EndSCHEMATC

@@ -85,14 +85,21 @@ void send_device_status()  {
     Serial.println( s_alarm_msg );
   }
 
-  Serial.print("SELF_PWR (V): ");
+  Serial.print("U_REF(V): ");
   Serial.println( f_self_pwr );
 
-  Serial.print("Uref (bird): ");
+  Serial.print("U_REF(bird): ");
   Serial.println( f_aref_bird );
 
   Serial.print("U_BATT(V): ");
   Serial.println( f_ain_batt );
+
+  Serial.print("U_BATT(bird): ");
+  Serial.println( f_batt_bird );
+  /*
+  Serial.print("U_ZERO(bird): ");
+  Serial.println( f_zero_bird );
+  */
   
   Serial.println();
 }

@@ -13,6 +13,7 @@
 #define LED         18
 #define REF_2V5     32
 #define BATT        35
+//#define ZERO_REF    34
 
 unsigned long   //ulong_time_millis = 0,
                 ulong_time_log_millis = 0,
@@ -30,12 +31,14 @@ boolean b_CHARGE = false,
         b_command_to_start = true;
 int int_BTN_counter = 5000;
 
-float f_aref_2v5 = 2.5,
+float f_aref = 1.225,
       f_analog_koef = 1.0,
       f_aref_bird = 0,
+      f_batt_bird = 0,
+      f_zero_bird = 0,
       f_self_pwr = 0,
       f_ain_batt = 0,
-      f_batt_koeff = 2;
+      f_batt_koeff = 2.0;
 
 String s_input_buf = "",
        s_input = "",
@@ -46,8 +49,8 @@ String s_input_buf = "",
 //String ssid     = "TxBrom_point",
 //       password = "164txbrom";
 
-const char* ssid     = "TxBrom_point";
-const char* password = "164txbrom";
+const char* ssid     = "qwake-new";
+const char* password = "qwake888";
 const char* host = "192.168.1.22";
 
 IPAddress local_IP(192, 168, 1, 51);
@@ -55,13 +58,14 @@ IPAddress gateway(192, 168, 1, 1);
 IPAddress subnet(255, 255, 0, 0);
 
 WiFiClient client;
-const int httpPort = 10002;
+const int httpPort = 80;
 
 
 void setup() {
   //
-  adc1_config_width( ADC_WIDTH_BIT_12 );
+  adc1_config_width( ADC_WIDTH_BIT_10 );
   adc1_config_channel_atten( ADC1_CHANNEL_4, ADC_ATTEN_DB_11 );
+  //adc1_config_channel_atten( ADC1_CHANNEL_6, ADC_ATTEN_DB_11 );
   adc1_config_channel_atten( ADC1_CHANNEL_7, ADC_ATTEN_DB_11 );
   
   init_gpio_pins();
@@ -146,6 +150,8 @@ void init_gpio_pins()  {
 
   pinMode( LED, OUTPUT );
   digitalWrite( LED, LOW );
+
+  //pinMode( ZERO_REF, INPUT_PULLDOWN );
   //
 }
 
@@ -181,18 +187,20 @@ void read_gpios_inputs()  {
 void adc_read() {
   //f_aref_bird = analogRead( REF_2V5 );
   f_aref_bird = adc1_get_raw( ADC1_CHANNEL_4 );
+  //f_zero_bird = adc1_get_raw( ADC1_CHANNEL_6 );
+  f_batt_bird = adc1_get_raw( ADC1_CHANNEL_7 );
 
   if ( f_aref_bird <= 0 ) {
     s_alarm_msg = s_alarm_msg + "uncorrect AREF level; ";
     f_aref_bird = 3100;
   }
   
-  f_analog_koef = f_aref_2v5 / f_aref_bird;
+  //f_analog_koef = f_aref / f_aref_bird;
 
-  f_self_pwr = 4096 * f_aref_2v5 / f_aref_bird;
+  f_self_pwr = (1023 * f_aref) / f_aref_bird;
   
   //f_ain_batt = f_batt_koeff * f_analog_koef * analogRead( BATT );
-  f_ain_batt = f_batt_koeff * f_analog_koef * adc1_get_raw( ADC1_CHANNEL_7 );
+  f_ain_batt = (f_batt_koeff * f_self_pwr * f_batt_bird) / 1023;
 
   if ( f_ain_batt <= 0 ) {
     s_alarm_msg = s_alarm_msg + "uncorrect BATTERY level; ";
