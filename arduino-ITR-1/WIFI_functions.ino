@@ -54,7 +54,7 @@ void wifi_wireless_connect() {
 void send_motor_start() {
   client.connect( host, httpPort );
   delay(250);
-  client.print("START");
+  client.println("start");
   delay(500);
   client.stop();
 
@@ -67,7 +67,7 @@ void send_motor_start() {
 void send_motor_stop()  {
   client.connect( host, httpPort );
   delay(250);
-  client.print("STOP");
+  client.println("stop");
   delay(500);
   client.stop();
 
