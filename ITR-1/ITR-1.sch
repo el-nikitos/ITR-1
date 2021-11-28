@@ -1,5 +1,4 @@
 EESchema Schematic File Version 4
-LIBS:ITR-1-cache
 EELAYER 30 0
 EELAYER END
 $Descr A3 16535 11693
@@ -2369,13 +2368,13 @@ $EndComp
 Text Notes 3600 2825 0    50   ~ 0
 ~~300 мА
 Wire Wire Line
-	7250 4400 7500 4400
+	7000 4250 6750 4250
 Wire Wire Line
 	8125 3875 7750 3875
 Connection ~ 8125 3875
 Text Label 7750 3875 0    50   ~ 0
 GND
-Text Label 7500 4400 2    50   ~ 0
+Text Label 6750 4250 0    50   ~ 0
 GND
 Connection ~ 8125 3125
 Wire Wire Line
@@ -2412,8 +2411,6 @@ Text Label 10500 4250 2    50   ~ 0
 BUTT.TURN
 Wire Wire Line
 	10500 4250 9975 4250
-Wire Wire Line
-	9375 4250 9125 4250
 Connection ~ 7400 4250
 Text Notes 7000 5175 0    50   ~ 0
 -нажатие кнопки открывает транзистор питания\n-на линии SELF.TURN МК должен выставить высокий уровень для самоподхвата\n-на лии BUTT.TURN МК в режиме PULL-UP видит состояние кнопки включения
@@ -2579,7 +2576,7 @@ Text Label 6275 8500 2    50   ~ 0
 GND
 Text Label 6750 9250 2    50   ~ 0
 CHARGE.MODE
-Text Label 6750 10000 2    50   ~ 0
+Text Label 6750 10150 2    50   ~ 0
 BUTT.TURN
 Text Label 2125 8800 0    50   ~ 0
 RESET
@@ -2602,25 +2599,11 @@ Wire Wire Line
 NoConn ~ 3600 10750
 Text Label 6750 9700 0    50   ~ 0
 LED1
-$Comp
-L elements:Клеммник_х3 XS2
-U 1 1 6149F023
-P 7250 4100
-F 0 "XS2" H 6675 4475 60  0000 L CNN
-F 1 "Клеммник_х3" H 6950 3700 60  0001 C CNN
-F 2 "N_X:jack_ST-033" H 6675 4375 60  0001 C CNN
-F 3 "" H 6675 4375 60  0001 C CNN
-F 4 "https://www.chipdip.ru/product/st-033" H 7250 4100 50  0001 C CNN "LINK"
-	1    7250 4100
-	1    0    0    -1  
-$EndComp
-Text Label 7250 4400 2    50   ~ 0
+Text Label -2000 8600 2    138  ~ 0
 GND
-Text Label 7250 4100 2    50   ~ 0
+Text Label -2000 5000 2    138  ~ 0
 U.IN
 Text Label 8000 4250 2    50   ~ 0
-EXT.BUTT
-Text Label 7250 4250 2    50   ~ 0
 EXT.BUTT
 Text Label 2250 6975 2    50   ~ 0
 OUT.TX
@@ -2681,65 +2664,16 @@ F 5 "100 Ом" H 3050 6900 50  0000 C CNN "INFO"
 $EndComp
 Wire Wire Line
 	2500 6375 2750 6375
-Text Label 4000 7750 0    50   ~ 0
-GND
-$Comp
-L elements:Резистор_0,065Вт R22
-U 1 1 61539EA6
-P 4675 6375
-F 0 "R22" H 4675 6250 60  0000 C CNN
-F 1 "Резистор_0,065Вт" H 4675 6225 60  0001 C CNN
-F 2 "N_RLC:Резистор_SMD_0603_0,065_Вт" H 4675 6375 60  0001 C CNN
-F 3 "" H 4675 6375 60  0001 C CNN
-F 4 "R101" H 4675 6375 50  0001 C CNN "УГО"
-F 5 "100 Ом" H 4675 6525 50  0000 C CNN "INFO"
-	1    4675 6375
-	-1   0    0    1   
-$EndComp
-Text Label 5375 6375 2    50   ~ 0
+Text Label 3875 6375 2    50   ~ 0
 UART.RX
 Text Label 3875 6750 2    50   ~ 0
 UART.TX
 Wire Wire Line
-	4975 6375 5375 6375
+	3350 6375 3875 6375
 Text Notes 1875 7625 0    50   ~ 0
 ПОДКЛЮЧЕНИЕ ПРОГРАММИРОВАНИЯ
-Text Label 3875 7125 2    50   ~ 0
+Text Label 3875 6000 2    50   ~ 0
 BOOT
-$Comp
-L elements:Резистор_0,065Вт R21
-U 1 1 615C937D
-P 3050 7125
-F 0 "R21" H 3050 7000 60  0000 C CNN
-F 1 "Резистор_0,065Вт" H 3050 6975 60  0001 C CNN
-F 2 "N_RLC:Резистор_SMD_0603_0,065_Вт" H 3050 7125 60  0001 C CNN
-F 3 "" H 3050 7125 60  0001 C CNN
-F 4 "R101" H 3050 7125 50  0001 C CNN "УГО"
-F 5 "100 Ом" H 3050 7275 50  0000 C CNN "INFO"
-	1    3050 7125
-	-1   0    0    1   
-$EndComp
-$Comp
-L elements_2020:Стабилитрон_1N5352BRLG_вертикальный VD4
-U 1 1 615D0D90
-P 4250 7550
-F 0 "VD4" V 4450 7375 39  0000 C CNN
-F 1 "Стабилитрон_BZV55C2V7" H 4425 7325 39  0001 C CNN
-F 2 "N_VD_HL:SOD-80" H 4400 7225 39  0001 C CNN
-F 3 "" H 4150 7550 39  0001 C CNN
-F 4 "2,7 В" V 4375 7375 39  0000 C CNN "INFO"
-F 5 "https://www.chipdip.ru/product/bzv55c2v7" H 4400 7125 50  0001 C CNN "LINK"
-	1    4250 7550
-	0    -1   -1   0   
-$EndComp
-Wire Wire Line
-	4250 7750 4250 7550
-Wire Wire Line
-	3500 7125 3875 7125
-Text Label 2250 7125 2    50   ~ 0
-OUT.BOOT
-Wire Wire Line
-	2250 7125 2750 7125
 Wire Wire Line
 	2250 6975 2625 6975
 Wire Wire Line
@@ -2750,15 +2684,6 @@ Wire Wire Line
 	2250 6825 2500 6825
 Wire Wire Line
 	2500 6825 2500 6375
-Wire Wire Line
-	4250 6375 4375 6375
-Wire Wire Line
-	3350 6375 4250 6375
-Connection ~ 4250 6375
-Wire Wire Line
-	4250 7250 4250 6375
-Wire Wire Line
-	3350 7125 3500 7125
 $Comp
 L elements:Резистор_0,065Вт R18
 U 1 1 616465EF
@@ -2772,10 +2697,6 @@ F 5 "10 кОм" H 3050 6150 50  0000 C CNN "INFO"
 	1    3050 6000
 	-1   0    0    1   
 $EndComp
-Wire Wire Line
-	3350 6000 3500 6000
-Wire Wire Line
-	3500 6000 3500 7125
 Text Label 2500 6000 0    50   ~ 0
 3V3
 Wire Wire Line
@@ -2866,13 +2787,13 @@ Wire Notes Line
 $Comp
 L elements:Клеммник_х3 XS1
 U 1 1 617654B3
-P 2250 6825
-F 0 "XS1" H 1650 7200 60  0000 L CNN
-F 1 "Клеммник_х3" H 1950 6425 60  0001 C CNN
-F 2 "N_X:jack_ST-033" H 1675 7100 60  0001 C CNN
-F 3 "" H 1675 7100 60  0001 C CNN
-F 4 "https://www.chipdip.ru/product/st-033" H 2250 6825 50  0001 C CNN "LINK"
-	1    2250 6825
+P 2250 6675
+F 0 "XS1" H 1650 7050 60  0000 L CNN
+F 1 "Клеммник_х3" H 1950 6275 60  0001 C CNN
+F 2 "N_X:jack_ST-033" H 1675 6950 60  0001 C CNN
+F 3 "" H 1675 6950 60  0001 C CNN
+F 4 "https://www.chipdip.ru/product/st-033" H 2250 6675 50  0001 C CNN "LINK"
+	1    2250 6675
 	1    0    0    -1  
 $EndComp
 $Comp
@@ -2919,9 +2840,6 @@ Wire Wire Line
 Text Label 5500 1750 0    50   ~ 0
 BAT.CHARGE
 Wire Wire Line
-	4000 7750 4250 7750
-Connection ~ 3500 7125
-Wire Wire Line
 	3350 6750 3875 6750
 $Comp
 L elements:Резистор_0,065Вт R17
@@ -2937,19 +2855,6 @@ F 5 "240 Ом" H 8200 9850 50  0000 C CNN "INFO"
 	-1   0    0    1   
 $EndComp
 $Comp
-L elements:Резистор_0,065Вт R4
-U 1 1 614A5C24
-P 8675 4250
-F 0 "R4" H 8675 4125 60  0000 C CNN
-F 1 "Резистор_0,065Вт" H 8675 4100 60  0001 C CNN
-F 2 "N_RLC:Резистор_SMD_0603_0,065_Вт" H 8675 4250 60  0001 C CNN
-F 3 "" H 8675 4250 60  0001 C CNN
-F 4 "R101" H 8675 4250 50  0001 C CNN "УГО"
-F 5 "100 Ом" H 8675 4400 50  0000 C CNN "INFO"
-	1    8675 4250
-	-1   0    0    1   
-$EndComp
-$Comp
 L elements:Резистор_0,065Вт R9
 U 1 1 614A6645
 P 9675 4250
@@ -2961,32 +2866,6 @@ F 4 "R101" H 9675 4250 50  0001 C CNN "УГО"
 F 5 "100 Ом" H 9675 4400 50  0000 C CNN "INFO"
 	1    9675 4250
 	-1   0    0    1   
-$EndComp
-Wire Wire Line
-	8375 4250 7400 4250
-Wire Wire Line
-	9125 4675 9125 4750
-Wire Wire Line
-	9125 4750 8750 4750
-Wire Wire Line
-	9125 4375 9125 4250
-Connection ~ 9125 4250
-Wire Wire Line
-	9125 4250 8975 4250
-Text Label 8750 4750 0    50   ~ 0
-GND
-$Comp
-L elements_2020:Стабилитрон_1N5352BRLG_вертикальный VD2
-U 1 1 614BD07A
-P 9125 4675
-F 0 "VD2" V 9313 4566 39  0000 R CNN
-F 1 "Стабилитрон_BZV55-C3V9" H 9300 4450 39  0001 C CNN
-F 2 "N_VD_HL:SOD-80" H 9275 4350 39  0001 C CNN
-F 3 "" H 9025 4675 39  0001 C CNN
-F 4 "3,9 В" V 9237 4566 39  0000 R CNN "INFO"
-F 5 "https://www.chipdip.ru/product/bzv55-c3v9.115" H 9275 4250 50  0001 C CNN "LINK"
-	1    9125 4675
-	0    -1   -1   0   
 $EndComp
 $Comp
 L elements:Конденсатор_керамический C3
@@ -3033,7 +2912,7 @@ NoConn ~ 2500 10300
 Wire Wire Line
 	1750 9400 2500 9400
 Wire Wire Line
-	5950 10000 6750 10000
+	5950 10150 6750 10150
 Text Label 8750 9700 2    50   ~ 0
 GND
 Wire Wire Line
@@ -3281,4 +3160,104 @@ Wire Wire Line
 Connection ~ 7750 9700
 Wire Wire Line
 	8750 9700 8500 9700
+$Comp
+L elements_2020:UBS-type-C-105450-0101&упрощенная XS3
+U 1 1 61A451AC
+P -2750 5000
+F 0 "XS3" H -2258 5339 138 0000 C CNN
+F 1 "UBS-type-C-105450-0101&упрощенная" H -2550 5700 50  0001 C CNN
+F 2 "N_X:usb-type-c" H -2750 5000 50  0001 C CNN
+F 3 "" H -2750 5000 50  0001 C CNN
+F 4 "https://www.chipdip.ru/product/105450-0101-molex" H -2750 5600 50  0001 C CNN "LINK"
+	1    -2750 5000
+	-1   0    0    -1  
+$EndComp
+$Comp
+L elements:отверстие_под_пайку X4
+U 1 1 61A4A787
+P 7250 4250
+F 0 "X4" H 7200 4575 60  0000 L CNN
+F 1 "отверстие_под_пайку" H 7300 4220 60  0001 L CNN
+F 2 "N_X:ОтверстиеD1.2" H 7250 4250 60  0001 C CNN
+F 3 "" H 7250 4250 60  0001 C CNN
+	1    7250 4250
+	1    0    0    -1  
+$EndComp
+$Comp
+L elements:отверстие_под_пайку X3
+U 1 1 61A4A791
+P 7000 4250
+F 0 "X3" H 6950 4575 60  0000 L CNN
+F 1 "отверстие_под_пайку" H 7050 4220 60  0001 L CNN
+F 2 "N_X:ОтверстиеD1.2" H 7000 4250 60  0001 C CNN
+F 3 "" H 7000 4250 60  0001 C CNN
+	1    7000 4250
+	-1   0    0    -1  
+$EndComp
+Wire Wire Line
+	-2750 5000 -2500 5000
+Wire Wire Line
+	-2500 5000 -2500 5300
+Wire Wire Line
+	-2500 5900 -2750 5900
+Connection ~ -2500 5000
+Wire Wire Line
+	-2500 5000 -2000 5000
+Wire Wire Line
+	-2500 5600 -2750 5600
+Connection ~ -2500 5600
+Wire Wire Line
+	-2500 5600 -2500 5900
+Wire Wire Line
+	-2500 5300 -2750 5300
+Connection ~ -2500 5300
+Wire Wire Line
+	-2500 5300 -2500 5600
+Wire Wire Line
+	-2750 8600 -2500 8600
+Wire Wire Line
+	-2500 8600 -2500 8300
+Wire Wire Line
+	-2500 7700 -2750 7700
+Connection ~ -2500 8600
+Wire Wire Line
+	-2500 8600 -2000 8600
+Wire Wire Line
+	-2500 8000 -2750 8000
+Connection ~ -2500 8000
+Wire Wire Line
+	-2500 8000 -2500 7700
+Wire Wire Line
+	-2500 8300 -2750 8300
+Connection ~ -2500 8300
+Wire Wire Line
+	-2500 8300 -2500 8000
+$Comp
+L elements:кнопка K3
+U 1 1 61B34F09
+P 10350 8750
+F 0 "K3" H 10175 8956 60  0000 C CNN
+F 1 "кнопка" H 10175 8956 60  0001 C CNN
+F 2 "N_X:Кнопка_FSMSM" H 10225 8800 60  0001 C CNN
+F 3 "" H 10225 8800 60  0001 C CNN
+	1    10350 8750
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	7400 4250 9375 4250
+Text Label 2250 6675 2    50   ~ 0
+GND
+Wire Wire Line
+	3350 6000 3875 6000
+$Comp
+L elements:кнопка K4
+U 1 1 61C0E62A
+P 10350 9000
+F 0 "K4" H 10175 9206 60  0000 C CNN
+F 1 "кнопка" H 10175 9206 60  0001 C CNN
+F 2 "N_X:Кнопка_FSMSM" H 10225 9050 60  0001 C CNN
+F 3 "" H 10225 9050 60  0001 C CNN
+	1    10350 9000
+	1    0    0    -1  
+$EndComp
 $EndSCHEMATC
