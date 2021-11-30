@@ -2576,7 +2576,7 @@ Text Label 6275 8500 2    50   ~ 0
 GND
 Text Label 6750 9250 2    50   ~ 0
 CHARGE.MODE
-Text Label 6750 10000 2    50   ~ 0
+Text Label 6750 10300 2    50   ~ 0
 BUTT.TURN
 Text Label 2125 8800 0    50   ~ 0
 RESET
@@ -2912,7 +2912,7 @@ NoConn ~ 2500 10300
 Wire Wire Line
 	1750 9400 2500 9400
 Wire Wire Line
-	5950 10000 6750 10000
+	5950 10300 6750 10300
 Text Label 8750 9500 2    50   ~ 0
 GND
 Wire Wire Line
@@ -3286,8 +3286,6 @@ F 5 "240 Ом" H 7550 10775 50  0000 C CNN "INFO"
 	-1   0    0    1   
 $EndComp
 Wire Wire Line
-	5950 10300 7000 10300
-Wire Wire Line
 	7850 10125 8000 10125
 Connection ~ 7750 9500
 Wire Wire Line
@@ -3296,7 +3294,7 @@ $Comp
 L elements:отверстие_под_пайку X7
 U 1 1 61B09806
 P 8250 10125
-F 0 "X7" H 8275 10350 60  0000 L CNN
+F 0 "X7" H 8275 10300 60  0000 L CNN
 F 1 "отверстие_под_пайку" H 8300 10095 60  0001 L CNN
 F 2 "N_X:ОтверстиеD1.2" H 8250 10125 60  0001 C CNN
 F 3 "" H 8250 10125 60  0001 C CNN
@@ -3307,7 +3305,7 @@ $Comp
 L elements:отверстие_под_пайку X8
 U 1 1 61B14BB1
 P 8500 10125
-F 0 "X8" H 8525 10350 60  0000 L CNN
+F 0 "X8" H 8525 10300 60  0000 L CNN
 F 1 "отверстие_под_пайку" H 8550 10095 60  0001 L CNN
 F 2 "N_X:ОтверстиеD1.2" H 8500 10125 60  0001 C CNN
 F 3 "" H 8500 10125 60  0001 C CNN
@@ -3317,11 +3315,17 @@ $EndComp
 Wire Wire Line
 	7000 10625 7250 10625
 Wire Wire Line
-	7000 10300 7000 10625
+	7125 10125 7250 10125
+Text Label 8450 10125 2    50   ~ 0
+GND
+Wire Wire Line
+	8500 10125 8250 10125
+Wire Wire Line
+	5950 10000 7125 10000
+Wire Wire Line
+	7125 10000 7125 10125
 Wire Wire Line
 	5950 10150 7000 10150
 Wire Wire Line
-	7000 10150 7000 10125
-Wire Wire Line
-	7000 10125 7250 10125
+	7000 10150 7000 10625
 $EndSCHEMATC
