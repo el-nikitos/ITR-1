@@ -58,7 +58,7 @@ void send_motor_start() {
   client.connect( host, httpPort );
   delay(250);
   digitalWrite( LED_RED, HIGH );
-  client.print("start");  //prinln
+  client.println("start");  //prinln
   delay(500);
   client.stop();
   digitalWrite( LED_RED, LOW );
@@ -73,7 +73,7 @@ void send_motor_stop()  {
   client.connect( host, httpPort );
   delay(250);
   digitalWrite( LED_RED, HIGH );
-  client.print("stop"); //println
+  client.println("stop"); //println
   delay(500);
   client.stop();
   digitalWrite( LED_RED, LOW );
@@ -84,10 +84,36 @@ void send_motor_stop()  {
   Serial.println();
 }
 
+void send_motor_up()  {
+  client.connect( host, httpPort );
+  delay(250);
+  digitalWrite( LED_RED, HIGH );
+  client.println("up"); //println
+  delay(500);
+  client.stop();
+  digitalWrite( LED_RED, LOW );
+  
+  Serial.println("the UP command has been sent");
+  Serial.println();
+}
+
+void send_motor_down()  {
+  client.connect( host, httpPort );
+  delay(250);
+  digitalWrite( LED_RED, HIGH );
+  client.println("down"); //println
+  delay(500);
+  client.stop();
+  digitalWrite( LED_RED, LOW );
+  
+  Serial.println("the DOWN command has been sent");
+  Serial.println();
+}
+
 void send_motor_ping()  {
   client.connect( host, httpPort );
   delay(250);
-  client.print("PING");
+  client.println("PING");
   delay(500);
   client.stop();
 }

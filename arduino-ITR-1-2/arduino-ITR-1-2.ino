@@ -7,7 +7,7 @@
 #include <WiFi.h>
 #include <driver/adc.h>
 
-#define CHRG_STAT   19       
+#define CHRG_STAT   21       
 #define BTN_TURN    4 
 #define BTN_UP      17
 #define BTN_DOWN    16
@@ -36,7 +36,8 @@ boolean b_CHARGE = false,
         b_command_to_start = true;
 int int_BTN_TURN_counter = 3000,
     int_BTN_UP_counter = 3000,
-    int_BTN_DOWN_counter = 3000;
+    int_BTN_DOWN_counter = 3000,
+    int_speed = 0;
 
 float f_aref = 2.5,
       f_analog_koef = 1.0,
@@ -56,8 +57,8 @@ String s_input_buf = "",
 //String ssid     = "TxBrom_point",
 //       password = "164txbrom";
 
-const char* ssid     = "TxBrom_point";
-const char* password = "164txbrom";
+const char* ssid     = "qwake-new";//"TxBrom_point";
+const char* password = "qwake888";//"164txbrom";
 const char* host = "192.168.1.20";
 
 IPAddress local_IP(192, 168, 1, 51);
@@ -135,9 +136,20 @@ void loop() {
     } else  {
       send_motor_stop();
     }
-    
   }
-  
+//
+  if (b_BTN_UP == true) {
+    b_BTN_UP = false;
+    int_BTN_UP_counter = 0;
+    send_motor_up();
+  }
+//
+  if (b_BTN_DOWN == true) {
+    b_BTN_DOWN = false;
+    int_BTN_DOWN_counter = 0;
+    send_motor_down();
+  }
+//
   led_work_indication();
   
   //
@@ -195,11 +207,12 @@ void read_gpios_inputs()  {
   } else {
     int_BTN_UP_counter++;
   }
-  if (int_BTN_UP_counter > 3000)  {  int_BTN_UP_counter = 3000;  }
+  if (int_BTN_UP_counter > 2600)  {  int_BTN_UP_counter = 2600;  }
   if (int_BTN_UP_counter < 0)  {  int_BTN_UP_counter = 0;  }
 
   if ( int_BTN_UP_counter >= 2500 )  {
     b_BTN_UP = true;
+    ulong_time_turn_off_millis = millis();
   } else {
     b_BTN_UP = false;
   }
@@ -209,16 +222,16 @@ void read_gpios_inputs()  {
   } else {
     int_BTN_DOWN_counter++;
   }
-  if (int_BTN_DOWN_counter > 3000)  {  int_BTN_DOWN_counter = 3000;  }
+  if (int_BTN_DOWN_counter > 2600)  {  int_BTN_DOWN_counter = 2600;  }
   if (int_BTN_DOWN_counter < 0)  {  int_BTN_DOWN_counter = 0;  }
 
   if ( int_BTN_DOWN_counter >= 2500 )  {
     b_BTN_DOWN = true;
+    ulong_time_turn_off_millis = millis();
   } else {
     b_BTN_DOWN = false;
   }
 //
-
 
   if (b_BTN_TURN == true)  {
     ulong_time_turn_off_millis = millis();
